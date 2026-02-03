@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Array Converter</title>
+</head>
+<body>
+
+  <h3>Enter numbers (space separated)</h3>
+  <input type="text" id="numbers" placeholder="Example: 5 10 15 20">
+
+  <p><strong>Output Array:</strong></p>
+  <p id="result">[]</p>
+
+  <script>
+    document.getElementById("numbers").addEventListener("input", function () {
+      const input = this.value;
+
+      const numberArray = input
+        .split(" ")
+        .map(num => parseInt(num, 10))
+        .filter(num => !isNaN(num));
+
+      document.getElementById("result").innerText =
+        "[" + numberArray.join(", ") + "]";
+    });
+  </script>
+
+</body>
+</html>
