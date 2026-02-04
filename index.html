@@ -3,32 +3,32 @@
      <title>Form Validation</title>
    </head>
    <body>
-   Hello World
-   <p id="Demo">Hello</p>
-   <form name="nameCard" action="success.html" onsubmit="return validateValues()" method="get">
-   Name:<input type="text" name="fname" id="fname"><br><br>
-   Age:<input type="number" name="age" id="age"><br><br>
+   <form onsubmit="return handleSubmit()">
+   M value (comma sepearated:)
+    <input type="text" id="mValue"><br><br>
+   F value(comma sepearated):
+    <input type="number" id="fValue"><br><br>
    <input type="submit" value="submit">
    </form>
+   <p id="result"></p>
    
+   <script src ="hello.js"></script>
    <script>
-      document.getElementById("Demo").innerHTML="Programming Language";
-      function validateValues() {
-      let name = document.forms["nameCard"]["fname"].value;
-      let age = document.forms["nameCard"]["age"].value;
-      
-       if (name === "") {
-            alert("Name is required");
-            return false;
+      function handleSubmit(){
+        let m = document.getElementById("mValue").value.split(",").map(Number);
+        let f = document.getElementById("fValue").value.split(",").map(Number);
+
+        if(m.length === 0 || f.length === 0 || m.includes(NaN) || f.includes(NaN)){
+           alert("Please enter valid numbers");
+           return false;
         }
 
-        if (age === "" || age <= 0) {
-            alert("Enter a valid age");
-            return false;
-        }
+        let result = multiplication(m,f);
+        document.getElementById("result").innerHTML = "Result" + result;
 
-        return true; 
+        return false;
       }
+
       </script>
 </body>
 
